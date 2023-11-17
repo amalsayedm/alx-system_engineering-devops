@@ -47,10 +47,8 @@ server {
                 proxy_pass http://localhost:5000/airbnb-onepage/;
         }
 
-        location ~ ^/airbnb-dynamic/number_odd_or_even/[0-9]+$ {
-                rewrite ^/airbnb-dynamic/number_odd_or_even/(.+)/?$ /number_odd_or_even/$1 break;
-                include proxy_params;
-                proxy_pass http://0.0.0.0:5001/$uri;
+        location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
         }
         server_name _;
         rewrite ^/redirect_me https://github.com/amalsayedm/  permanent;
